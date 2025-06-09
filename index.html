@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Text to Image Generator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      text-align: center;
+    }
+    input {
+      padding: 0.5rem;
+      width: 300px;
+    }
+    button {
+      padding: 0.5rem 1rem;
+    }
+    img {
+      margin-top: 2rem;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Text to Image Generator</h1>
+  <form id="promptForm">
+    <input type="text" id="prompt" placeholder="Enter a prompt..." required />
+    <button type="submit">Generate</button>
+  </form>
+  <img id="resultImage" src="" alt="Generated image will appear here" hidden />
+
+  <script>
+    const form = document.getElementById('promptForm');
+    const image = document.getElementById('resultImage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const prompt = document.getElementById('prompt').value;
+      image.hidden = true;
+      image.src = `https://tti.wjallon.workers.dev/?prompt=${encodeURIComponent(prompt)}`;
+      image.onload = () => image.hidden = false;
+    });
+  </script>
+</body>
+</html>
