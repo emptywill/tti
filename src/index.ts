@@ -1,24 +1,22 @@
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request, env) {
     const url = new URL(request.url);
     const prompt = url.searchParams.get("prompt");
 
-    // If prompt is provided, generate image
     if (prompt) {
       const inputs = { prompt };
 
-      const response = await env.AI.run(
+      const image = await env.AI.run(
         "@cf/stabilityai/stable-diffusion-xl-base-1.0",
         inputs
       );
 
-      return new Response(response, {
+      return new Response(image, {
         headers: { "content-type": "image/png" },
       });
     }
 
-    // Otherwise, return the HTML page
-    const html = await env.ASSETS.fetch(request);
-    return html;
+    // Serve static files from the public folder, including index.html
+    return env.ASSETS.fetch(request);
   },
 } satisfies ExportedHandler<Env>;
