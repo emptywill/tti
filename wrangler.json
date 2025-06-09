@@ -8,5 +8,9 @@
   },
   "observability": {
     "enabled": true
+  },
+  "site": {
+    "bucket": "./public",
+    "entry-point": "src"
   }
 }
