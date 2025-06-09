@@ -10,7 +10,6 @@
     "enabled": true
   },
   "site": {
-    "bucket": "./public",
-    "entry-point": "src"
+    "bucket": "./public"
   }
 }
